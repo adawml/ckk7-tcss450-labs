@@ -22,13 +22,19 @@ app.use(express.json())
  */
 app.use(middleware.jsonErrorInBody)
 
-app.get("/hello", (request, response) => { 
+/*app.get("/hello", (request, response) => { 
     response.send({ 
         message: "Hello, you sent a GET request" 
     }) 
 }) 
+app.post("/hello", (reqeust, response) => { 
+    response.send({ 
+        message: "Hello, you sent a POST request" 
+    }) 
+})*/
+app.use("/hello",require('./routes/hello.js'));
 
-app.get("/params", (request, response) => { 
+/*app.get("/params", (request, response) => { 
     if (isStringProvided(request.query.name)) { 
         response.send({ 
             //req.query is a reference to arguments a 
@@ -41,15 +47,7 @@ app.get("/params", (request, response) => {
         }) 
     } 
 }) 
- 
-app.post("/hello", (reqeust, response) => { 
-    response.send({ 
-        message: "Hello, you sent a POST request" 
-    }) 
-})
-
-
- 
+  
 app.post("/params", (request, response) => { 
    
     if (isStringProvided(request.body.name)) { 
@@ -63,7 +61,8 @@ app.post("/params", (request, response) => {
             message: "Missing required information,request.body.name:"+request.body.name
         }) 
     } 
-}) 
+}) */
+app.use("/params",require('./routes/params.js'));
  
 app.get("/wait", (request, response) => { 
     setTimeout(() => { 
@@ -73,7 +72,7 @@ app.get("/wait", (request, response) => {
     }, 5000) 
 })
 
-app.post("/demosql", (request, response) => { 
+/*app.post("/demosql", (request, response) => { 
     if (isStringProvided(request.body.name) && isStringProvided(request.body.message)) { 
         const theQuery = "INSERT INTO DEMO(Name, Message) VALUES ($1, $2) RETURNING *" 
         const values = [request.body.name, request.body.message] 
@@ -134,8 +133,12 @@ app.get("/demosql", (request, response) => {
                 message: err.detail 
             }) 
         }) 
-})
+})*/
+app.use('/demosql', require('./routes/demosql.js')) 
 
+app.use('/auth', require('./routes/register.js'))
+
+app.use('/auth', require('./routes/signin.js'))
 
 /*
  * Return HTML for the / end point. 
