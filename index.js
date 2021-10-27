@@ -51,10 +51,8 @@ app.post("/hello", (reqeust, response) => {
 
  
 app.post("/params", (request, response) => { 
-    response.send({ 
-        message: "Hello, " + request.body.name + "! You sent a POST params" 
-    }) 
-   /* if (isStringProvided(request.body.name)) { 
+   
+    if (isStringProvided(request.body.name)) { 
         response.send({ 
             //req.body is a reference to arguments in the POST body 
             message: "Hello, " + request.body.name + "! You sent a POST Request" 
@@ -62,9 +60,9 @@ app.post("/params", (request, response) => {
     } else { 
         response.status(400) 
         response.send({ 
-            message: "Missing required information" 
+            message: "Missing required information,request.body.name:"+request.body.name
         }) 
-    } */
+    } 
 }) 
  
 app.get("/wait", (request, response) => { 
