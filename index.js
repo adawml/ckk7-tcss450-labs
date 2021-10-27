@@ -27,12 +27,6 @@ app.get("/hello", (request, response) => {
         message: "Hello, you sent a GET request" 
     }) 
 }) 
- 
-app.post("/hello", (reqeust, response) => { 
-    response.send({ 
-        message: "Hello, you sent a POST request" 
-    }) 
-})
 
 app.get("/params", (request, response) => { 
     if (isStringProvided(request.query.name)) { 
@@ -47,6 +41,14 @@ app.get("/params", (request, response) => {
         }) 
     } 
 }) 
+ 
+app.post("/hello", (reqeust, response) => { 
+    response.send({ 
+        message: "Hello, you sent a POST request" 
+    }) 
+})
+
+
  
 app.post("/params", (request, response) => { 
     if (isStringProvided(request.body.name)) { 
