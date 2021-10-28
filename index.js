@@ -140,9 +140,12 @@ app.use('/auth', require('./routes/register.js'))
 
 app.use('/auth', require('./routes/signin.js'))
 
+app.use('/phish', middleware.checkToken, require('./routes/phish.js')) 
+
 /*
  * Return HTML for the / end point. 
  * This is a nice location to document your web service API
+ * 
  * Create a web page in HTML/CSS and have this end point return it. 
  * Look up the node module 'fs' ex: require('fs');
  */
